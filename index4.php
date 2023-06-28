@@ -1,28 +1,34 @@
 <?php 
-
+session_start();
+require_once("dataBase.php");
 require_once("idade.class.php");
-
-$tentativa = new idade();
-$tentativa = $tentativa->cruzaDados();
-
-$row = $tentativa->fetch_array();     
+extract($_POST);
 ?>
+<form action="index5.php" method="post"> 
+    <select name="curso">
+<?php
+if(isset($idade)){
+    if($idade >18){
+        $idade = 18;
+    }
+    $teste = new idade;
+    $teste = $teste->cruzaDados($idade);
+    while($row = $teste->fetch_array()){
+    $_SESSION['turma'] = $row['nome_turma'];
+    $curso[] = $row['nome_curso'];
+    }
+    $curso_unico = array_unique($curso);
+    foreach ($curso_unico as $curso) {
+?>
+        <option><?=$curso?></option>
+<?php    
+    }
+}
+?>
+    </select>
+    <input type="text" name="nome">
+    <input type="text" name="cpfrg">
+    <input type="text" name="telefone" >
+    <input type="submit" name="Enviar">
+</form>
 
-<form action="exibir.php" method="post"> 
-    <?php
-        for($row = $tentativa){
-    ?>
-    <label for="nome_curso" class="form-check-label">
-            <p><?= $row['nome_curso'] ?></p>
-    </label> 
-    <input class="form-check-input" type="checkbox" name="<?= $row['nome_curso'] ?>" value="<?=$row['nome_curso']?>" id="nome_curso">
-
-    <?php 
-        }
-    ?>
-    <form action="exibir.php" method="post">
-    <input type="text" name="name" placeholder="Insira seu nome completo">
-    <input type="text" name="telefone" placeholder="Insira seu telefone">
-    <input type="text" name="email" placeholder="Insira um email valido">
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form> 

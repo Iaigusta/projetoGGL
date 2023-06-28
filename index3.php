@@ -10,20 +10,21 @@
 <body>
    <section>
     <div class="form-idade"> 
-        <div class="form-idade2">
+        <div class="form-idade">
         <h1>QUAL A SUA IDADE?</h1>
-    <form method="post" action="tentativa.php">
-    <input id="idade" type='range' value='50' max='100'>
+    <form method="post" action="index4.php">
+    <input id="idade" name="idade" type='range' value='50' max='100'> 
+    <input type="submit" value="enviar">
     <span id="s_idade">50</span>
     <script>
-    var $range = document.querySelector('#idade'),
-        $value = document.querySelector('#s_idade');
+        var $range = document.querySelector('#idade'),
+            $value = document.querySelector('#s_idade');
 
-    $range.addEventListener('input', function() {
-    $value.textContent = this.value;
-    });
+        $range.addEventListener('input', function() {
+        $value.textContent = this.value;
+        });
     </script>
-    <input type="submit" value="enviar">
+   
     </form>
     </div>
     </div>
