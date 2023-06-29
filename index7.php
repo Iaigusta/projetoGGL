@@ -7,6 +7,7 @@ extract($_POST);
 <form action="index5.php" method="post"> 
     <select name="curso">
 <?php
+
 if(isset($idade)){
     if($idade >18){
         $idade = 18;
@@ -26,9 +27,9 @@ if(isset($idade)){
 }
 ?>
     </select>
-    <input type="text" name="nome">
-    <input type="text" name="cpfrg">
-    <input type="text" name="telefone" >
+    <input type="text" name="nome" value="<?= $_SESSION['nome_aluno']?>">
+    <input type="text" name="cpfrg" value="<?= $_SESSION['cpf_aluno']?>">
+    <input type="text" name="telefone" value="<?= $_SESSION['telefone']?>">
     <input type="submit" name="Enviar">
 </form>
 <?php 

@@ -7,6 +7,7 @@
     <title>Incrições</title>
 </head>
 <body>
+    <h1>INSIRA DADOS VALIDOS</h1>
     <h1>Você Ja é aluno? faça login abaixo</h1>
     <div class="form-idade"> 
     <form action="validaLogin.php" method="post">
