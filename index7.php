@@ -7,19 +7,24 @@ extract($_POST);
 <form action="index5.php" method="post"> 
     <select name="curso">
 <?php
-
-if(isset($idade)){
-    if($idade >18){
+$ano = $_SESSION['ano_nascimento'];
+$anoatual = date('Y'); 
+$idade = $anoatual - $ano ;
+if(isset($idade) ){
+    if($idade >18) {
         $idade = 18;
+    } 
+    if($idade <6) {
+        header("location: index8.php");
     }
-    $teste = new banco;
-    $teste = $teste->cruzaDados($idade);
-    while($row = $teste->fetch_array()){
-    $_SESSION['turma'] = $row['nome_turma'];
-    $curso[] = $row['nome_curso'];
-    }
-    $curso_unico = array_unique($curso);
-    foreach ($curso_unico as $curso) {
+$teste = new banco;
+$teste = $teste->cruzaDados($idade);
+while($row = $teste->fetch_array()){
+$_SESSION['turma'] = $row['nome_turma'];
+$curso[] = $row['nome_curso'];
+}
+$curso_unico = array_unique($curso); 
+foreach ($curso_unico as $curso) {
 ?>
         <option><?=$curso?></option>
 <?php    

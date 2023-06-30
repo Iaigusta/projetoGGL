@@ -16,7 +16,16 @@ if ($row == null) {
     $_SESSION['nome_aluno']= $andorinha['nome_aluno']; 
     $_SESSION['cpf_aluno']= $andorinha['cpf']; 
     $_SESSION['telefone'] = $andorinha['telefone_celular'];
-
+    $_SESSION['data_nascimento'] = $andorinha['data_nascimento'];
+    $idade = $_SESSION['data_nascimento'];
+    $data = explode("/",$idade);
+    $diaNasc    = $data[0];
+    $mesNasc    = $data[1];
+    $anoNasc    = $data[2];
+    $_SESSION['ano_nascimento'] = $anoNasc;
+    $ano = $_SESSION['ano_nascimento'];
+    $anoatual = date('Y'); 
+    $idade2 = $anoatual - $ano;
     header("location: index7.php");
 }
 ?>

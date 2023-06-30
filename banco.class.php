@@ -69,13 +69,15 @@ class banco{
 
     public function getDados($codaluno) {
         try {
-            $query = "SELECT nome_aluno,cpf,rg,telefone_celular
-                FROM aluno 
-                WHERE cod_aluno = $codaluno";
+            $query = "SELECT date_format(data_nascimento, '%d/%m/%Y') 
+                      as data_nascimento,nome_aluno,cpf,rg,telefone_celular
+                      FROM aluno 
+                      WHERE cod_aluno = $codaluno";
             $result = $this->conexao->query($query);
         return $result;
     } catch(exeption $e){ 
         return $e->getMessage();
     }
     }
-}
+
+} 
