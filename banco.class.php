@@ -83,4 +83,16 @@ class banco{
     }
     }
 
+    public function validaSenha($validasenha) {
+        try {
+            $query = "SELECT autenticacao
+                      FROM senha
+                      WHERE autenticacao = '$validasenha'";
+            $result = $this->conexao->query($query);
+        return $result;
+    } catch(exeption $e){ 
+        return $e->getMessage();
+    }
+    }
+
 } 
