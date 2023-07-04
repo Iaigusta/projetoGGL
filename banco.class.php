@@ -15,11 +15,11 @@ class banco{
     }
     /**
      * Função responsavel pelo cruzamento de respectivos dados do banco
-     * @return $result
+     * @return 
      */
     public function cruzaDados ($idade) {
         try{
-            $query = "SELECT c.nome_curso,t.nome_turma,t.idade_minima,t.idade_maxima 
+            $query = "SELECT c.nome_curso,c.cod_curso,t.nome_turma,t.idade_minima,t.idade_maxima,t.cod_turma,m.cod_modulo 
                       FROM turma t
                       INNER JOIN modulo m ON m.cod_modulo = t.cod_modulo 
                       INNER JOIN curso c ON c.cod_curso = m.cod_curso
@@ -32,12 +32,15 @@ class banco{
         }
     }
 
-    public function getNomeSenha() {
+    public function getNomeSenha($codturma) {
         try {
-            $query = "SELECT autenticacao,cod_senha
-                      FROM senha 
-                      WHERE situacao = 'DISPONIVEL' LIMIT 1";
+            $query = "SELECT s.autenticacao,s.cod_senha
+                      FROM senha s
+                      INNER JOIN turma t ON t.cod_turma = s.cod_turma
+                      WHERE s.situacao = 'DISPONIVEL' LIMIT 1";
             $result = $this->conexao->query($query);
+
+            
         return $result;
     } catch(exeption $e){ 
         return $e->getMessage();
@@ -46,8 +49,8 @@ class banco{
     public function updateSenha($codsenha) {
         try {
             $query = "UPDATE senha 
-            SET situacao = 'DISPONIVEL' 
-            WHERE cod_senha= $codsenha";
+                      SET situacao = 'UTILIZADA' 
+                      WHERE cod_senha= $codsenha";
             $result = $this->conexao->query($query);
         return $result;
     } catch(exeption $e){ 
