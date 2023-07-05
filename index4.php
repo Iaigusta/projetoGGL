@@ -1,3 +1,6 @@
+<link href="css/styles4.css" rel="stylesheet">
+<div class="page"> 
+    <div class="formLogin">
 <?php 
 session_start();
 require_once("dataBase.php");
@@ -5,7 +8,7 @@ require_once("banco.class.php");
 extract($_POST);
 ?>
 <form action="index5.php" method="post"> 
-    <select name="curso">
+    <select name="curso" class="lag1">
 <?php
 if(isset($idade)){
     if($idade >18){
@@ -30,11 +33,19 @@ if(isset($idade)){
     }
 }
 ?>
+</div>
+</div>
     </select>
-    <input type="text" name="nome">
-    <input type="text" name="cpfrg">
-    <input type="text" name="telefone" >
-    <input type="submit" name="Enviar">
+    <h2>NOME</h2>
+    <input type="text" name="nome" placeholder="INSIRA SEU NOME" class="lag">
+    <br>
+    <h2>CPF</h2>
+    <input type="text" name="cpfrg" placeholder=" INSIRA SEU CPF" class="lag">
+    <br>
+    <h2>TELEFONE</h2>
+    <input type="text" name="telefone" placeholder="INSIRA SEU TELEFONE" class="lag" >
+    <br>
+    <input type="submit" name="Enviar" class="btn">
 </form>
 <?php 
 $codturma = $_SESSION['cod_turma'];

@@ -1,3 +1,6 @@
+<link href="css/styles4.css" rel="stylesheet">
+<div class="page"> 
+    <div class="formLogin">
 <?php 
 session_start();
 require_once("dataBase.php");
@@ -5,7 +8,7 @@ require_once("banco.class.php");
 extract($_POST);
 ?>
 <form action="index5.php" method="post"> 
-    <select name="curso">
+    <select name="curso" class="lag1">
 <?php
 $ano = $_SESSION['ano_nascimento'];
 $anoatual = date('Y'); 
@@ -32,11 +35,20 @@ foreach ($curso_unico as $curso) {
 }
 ?>
     </select>
-    <input type="text" name="nome" value="<?= $_SESSION['nome_aluno']?>">
-    <input type="text" name="cpfrg" value="<?= $_SESSION['cpf_aluno']?>">
-    <input type="text" name="telefone" value="<?= $_SESSION['telefone']?>">
-    <input type="submit" name="Enviar">
+    <br>
+    <h2>NOME</h2>
+    <input type="text" name="nome" value="<?= $_SESSION['nome_aluno']?>" placeholder="INSIRA SEU NOME" class="lag">
+    <br>
+    <h2>CPF</h2>
+    <input type="text" name="cpfrg" value="<?= $_SESSION['cpf_aluno']?>" placeholder=" INSIRA SEU CPF" class="lag">
+    <br>
+    <h2>TELEFONE</h2>
+    <input type="text" name="telefone" value="<?= $_SESSION['telefone']?>" placeholder="INSIRA SEU TELEFONE" class="lag">
+    <br>
+    <input type="submit" name="Enviar" class="btn">
 </form>
+</div>
+</div>
 <?php 
 $pardal = new banco;
 $pardal = $pardal->getNomeSenha();
@@ -46,4 +58,4 @@ $_SESSION['cod'] = $andorinha['cod_senha'];
 $codsenha=$andorinha['cod_senha'] ;
 $modsenha = new banco;
 $modsenha->updateSenha($codsenha);
-
+?>
